@@ -5,12 +5,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
-import cc.cloudist.acplibrary.ACProgressConstant;
-import cc.cloudist.acplibrary.ACProgressCustom;
-import cc.cloudist.acplibrary.ACProgressFlower;
-import cc.cloudist.acplibrary.ACProgressPie;
+import cc.cloudist.widget.ProgressConstant;
+import cc.cloudist.widget.ProgressFlower;
 
 public class MainActivity extends Activity implements View.OnClickListener {
+
+    ProgressFlower dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_1: {
-                ACProgressFlower dialog = new ACProgressFlower.Builder(this, R.style.NonDimACProgressDialog)
-                        .direction(ACProgressConstant.DIRECT_CLOCKWISE)
+                dialog = new ProgressFlower.Builder(this, R.style.NonDimACProgressDialog)
+                        .direction(ProgressConstant.DIRECT_CLOCKWISE)
                         .themeColor(Color.WHITE)
                         .fadeColor(Color.DKGRAY).build();
                 dialog.setCanceledOnTouchOutside(true);
@@ -38,8 +38,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
             break;
             case R.id.button_2: {
-                ACProgressFlower dialog = new ACProgressFlower.Builder(this)
-                        .direction(ACProgressConstant.DIRECT_ANTI_CLOCKWISE)
+                ProgressFlower dialog = new ProgressFlower.Builder(this)
+                        .direction(ProgressConstant.DIRECT_ANTI_CLOCKWISE)
                         .themeColor(Color.GREEN)
                         .fadeColor(Color.RED).build();
                 dialog.setCanceledOnTouchOutside(true);
@@ -47,24 +47,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
             break;
             case R.id.button_3: {
-                ACProgressFlower dialog = new ACProgressFlower.Builder(this)
+                ProgressFlower dialog = new ProgressFlower.Builder(this)
                         .text("Text is here")
                         .build();
                 dialog.setCanceledOnTouchOutside(true);
                 dialog.show();
             }
             break;
-            case R.id.button_4: {
-                ACProgressPie dialog = new ACProgressPie.Builder(this).build();
-                dialog.setCanceledOnTouchOutside(true);
-                dialog.show();
-            }
-            break;
             case R.id.button_5: {
-                ACProgressCustom dialog = new ACProgressCustom.Builder(this)
-                        .useImages(R.drawable.p0, R.drawable.p1, R.drawable.p2, R.drawable.p3).build();
-                dialog.setCanceledOnTouchOutside(true);
-                dialog.show();
+                dialog.dismiss();
             }
             break;
         }

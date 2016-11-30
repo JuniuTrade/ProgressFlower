@@ -1,4 +1,4 @@
-package cc.cloudist.acplibrary.views;
+package cc.cloudist.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,9 +11,6 @@ import android.view.View;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
-
-import cc.cloudist.acplibrary.components.FlowerDataCalc;
-import cc.cloudist.acplibrary.components.PetalCoordinate;
 
 public final class FlowerView extends View {
 

@@ -1,15 +1,19 @@
-package cc.cloudist.acplibrary;
+package cc.cloudist.widget;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.view.Display;
+import android.view.WindowManager;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cc.cloudist.acplibrary.views.FlowerView;
-
-public class ACProgressFlower extends ACProgressBaseDialog {
+public class ProgressFlower extends Dialog {
 
     private Builder mBuilder;
     private FlowerView mFlowerView;
@@ -17,8 +21,9 @@ public class ACProgressFlower extends ACProgressBaseDialog {
     private int mSpinCount = 0;
     private Timer mTimer;
 
-    private ACProgressFlower(Builder builder) {
+    private ProgressFlower(Builder builder) {
         super(builder.mContext, builder.mTheme);
+        getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         mBuilder = builder;
         setOnDismissListener(new OnDismissListener() {
             @Override
@@ -50,7 +55,7 @@ public class ACProgressFlower extends ACProgressBaseDialog {
             @Override
             public void run() {
                 int result = mSpinCount % mBuilder.mPetalCount;
-                if (mBuilder.mDirection == ACProgressConstant.DIRECT_CLOCKWISE) {
+                if (mBuilder.mDirection == ProgressConstant.DIRECT_CLOCKWISE) {
                     mFlowerView.updateFocusIndex(result);
                 } else {
                     mFlowerView.updateFocusIndex(mBuilder.mPetalCount - 1 - result);
@@ -64,11 +69,23 @@ public class ACProgressFlower extends ACProgressBaseDialog {
         }, delay, delay);
     }
 
+    private int getMinimumSideOfScreen(Context context) {
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
+        if (Build.VERSION.SDK_INT >= 13) {
+            Point size = new Point();
+            display.getSize(size);
+            return Math.min(size.x, size.y);
+        } else {
+            return Math.min(display.getWidth(), display.getHeight());
+        }
+    }
+
     public static class Builder {
 
         private Context mContext;
 
-        private int mTheme = R.style.ACPLDialog;
+        private int mTheme = R.style.ProgressFlowerDialog;
 
         private float mSizeRatio = 0.25f;
         private float mBorderPadding = 0.55f;
@@ -85,7 +102,7 @@ public class ACProgressFlower extends ACProgressBaseDialog {
         private float mBackgroundCornerRadius = 20f;
         private float mBackgroundAlpha = 0.5f;
 
-        private int mDirection = ACProgressConstant.DIRECT_CLOCKWISE;
+        private int mDirection = ProgressConstant.DIRECT_CLOCKWISE;
         private float mSpeed = 9f;
 
         private String mText = null;
@@ -199,9 +216,11 @@ public class ACProgressFlower extends ACProgressBaseDialog {
             return this;
         }
 
-        public ACProgressFlower build() {
-            return new ACProgressFlower(this);
+        public ProgressFlower build() {
+            return new ProgressFlower(this);
         }
 
     }
+
+
 }
