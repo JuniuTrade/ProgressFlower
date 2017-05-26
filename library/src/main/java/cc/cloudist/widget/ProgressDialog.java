@@ -56,9 +56,13 @@ public class ProgressDialog extends Dialog {
             public void run() {
                 int result = mSpinCount % mBuilder.mPetalCount;
                 if (mBuilder.mDirection == ProgressConstant.DIRECT_CLOCKWISE) {
-                    mFlowerView.updateFocusIndex(result);
+                    if(mFlowerView!=null){
+                        mFlowerView.updateFocusIndex(result);
+                    }
                 } else {
-                    mFlowerView.updateFocusIndex(mBuilder.mPetalCount - 1 - result);
+                    if(mFlowerView!=null){
+                        mFlowerView.updateFocusIndex(mBuilder.mPetalCount - 1 - result);
+                    }
                 }
                 if (result == 0) {
                     mSpinCount = 1;
