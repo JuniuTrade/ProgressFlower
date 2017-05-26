@@ -13,7 +13,7 @@ import android.view.WindowManager;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ProgressDialog extends Dialog {
+public class ProgressFlower extends Dialog {
 
     private Builder mBuilder;
     private FlowerView mFlowerView;
@@ -21,7 +21,7 @@ public class ProgressDialog extends Dialog {
     private int mSpinCount = 0;
     private Timer mTimer;
 
-    private ProgressDialog(Builder builder) {
+    private ProgressFlower(Builder builder) {
         super(builder.mContext, builder.mTheme);
         getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         mBuilder = builder;
@@ -220,8 +220,8 @@ public class ProgressDialog extends Dialog {
             return this;
         }
 
-        public ProgressDialog build() {
-            return new ProgressDialog(this);
+        public ProgressFlower build() {
+            return new ProgressFlower(this);
         }
 
     }

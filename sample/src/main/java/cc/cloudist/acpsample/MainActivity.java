@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 
 import cc.cloudist.widget.ProgressConstant;
-import cc.cloudist.widget.ProgressDialog;
+import cc.cloudist.widget.ProgressFlower;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    ProgressDialog dialog;
+    ProgressFlower dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_1: {
-                dialog = new ProgressDialog.Builder(this, R.style.NonDimACProgressDialog)
+                dialog = new ProgressFlower.Builder(this, R.style.NonDimACProgressDialog)
                         .direction(ProgressConstant.DIRECT_CLOCKWISE)
                         .themeColor(Color.WHITE)
                         .fadeColor(Color.DKGRAY).build();
@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
             break;
             case R.id.button_2: {
-                ProgressDialog dialog = new ProgressDialog.Builder(this)
+                ProgressFlower dialog = new ProgressFlower.Builder(this)
                         .direction(ProgressConstant.DIRECT_ANTI_CLOCKWISE)
                         .themeColor(Color.GREEN)
                         .fadeColor(Color.RED).build();
@@ -47,7 +47,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
             break;
             case R.id.button_3: {
-                ProgressDialog dialog = new ProgressDialog.Builder(this)
+                ProgressFlower dialog = new ProgressFlower.Builder(this)
                         .text("Text is here")
                         .build();
                 dialog.setCanceledOnTouchOutside(true);
