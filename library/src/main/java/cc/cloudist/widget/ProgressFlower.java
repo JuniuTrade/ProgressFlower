@@ -51,6 +51,7 @@ public class ProgressFlower extends Dialog {
 
         long delay = (long) (1000 / mBuilder.mSpeed);
         mTimer = new Timer();
+        mSpinCount = 0;
         mTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
